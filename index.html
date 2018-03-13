@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-<html>
-  <head>
-    <title>Proposta um para homepage da empresa</title>
-  </head>
-  <body>
-    <h1>Cabeçalho do sistema</h1>
-
-    <div>
-      Isso aqui é o conteúdo da página
-    </div>
-
-    <h1>Copyright - Caelum 2012</h1>
-  </body>
-=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,72 +11,131 @@
     <p>Parágrafo de texto</p>
     <p>07 - Controle avançado de alterações
 
-        git checkout nomedoarquivo: Volta o arquivo para o seu esado anterior
+      git checkout nomedoarquivo: Volta o arquivo para o seu esado anterior
+      
+      git reset HEAD nomedoarquivo: Volta o arquivo ao estado unstaged, o que equivale a um arquivo antes de ser adicionado (add)
+      para comiit
+      
+      git reset identificadorDoCommit: Volta o status do git para o commit do identificador selecionado. Podemos capturar um
+      identificador através do comando git log
+      
+      git revert identificadorDoCommit: Faz um novo commit que desfaz o commit correspondente ao identificador.
+      
+      git stash: guarda as modificações que não foram comitadas. Desta forma podemos utilizar outros comandos de modificação de
+      commits e depois abrir o stash para prosseguir com o que havíamos guardado.
+      
+      git stash list: lista o que tem guardado em seu stash
+      
+      git stash pop: retoma os últimos dados salvos no stash.
+      
+      git stash apply identificadorDoStash: retoma os dados guardados no stash puxando pelo identificador.
+      
+      git stash drop: apaga as alterações guardadas no stash.
+      
+      git bisect start: Começa um processo de triagem de commits para achar um commit específico. Após startar o bisect deve-se
+      inserir os comandos "git bisect bad identificadorDoCommit" e "git bisect good identificadorDoCommit" (lembrando que podemos
+      inserir "git bisect HEAD" caso queiramos usar o último commit como base) sendo que o "good" é a versão que queremos e "bad" é
+      a versão que não queremos. Após isso o bisect irá retornar versões anteriores do arquivo, nós devemos analisar estas versões
+      dentro do arquivo e dizer se esta é a versão boa ou a ruim digitando "git bisect good" ou "git bisect bad" de acordo com o
+      resultado. Ao final o bisect irá finalizar com o commit que queremos e irá retornar seu identificador.
+      
+      08 - Contribuição com opensource: Técnicas avançadas e produtividade com o GIT
+      
+      Fork: Em muitos projetos não será possível ter permissão para dar push diretamente no repositório, porém nada impede que
+      façamos uma versão nossa do projeto paralelamente ao original. Para isso utilizamos o recurso "Fork" do próprio github.
+      Esse recurso cria uma cópia do projeto no nosso repositório reomoto onde teremos controle total. Neste instante podemos criar
+      o clone em nossa máquina a partir deste repositório sem problemas, adicionando melhorias ao projeto conforme formos
+      desenvolvendo. Porém podemos sugerir ao dono original do projeto que adicione as nossas alterações caso ele se interesse, a
+      esse processo damos o nome de "Pull Request". O pull request pode ser feito a partir da própria interface gráfica do github,
+      mas falaremos melhor dele mais adiante.
+      Contudo o projeto original receberá outras melhorias do autor e de outros colaboradores, para ficar a par destas melhorias é
+      recomendado que façamos uma cópia do repositório original para continuar recebendo commites e pushes, essa cópia relaciona o
+      repositório original ao fork e deve ser feita com o seguinte comando:
+      
+        git remote add original [caminho_do_repositorio_remoto]
+      
+      Sempre que quisermos carregar as alterações do repositório original utilizamos o comando git fetch original e logo em seguida
+      o comando git merge original/master para dar merge nas alterações.
+      
+      Pull request: O pull request é feito através da interface gráfica do próprio github (ou outros programas de gerenciamento de
+      GIT). Quando fazemos os pull request deixamos uma mensagem dizendo o que foi modificado e aguardamos a requisição ser aceita
+      ou não. Sempre que um pull request é criado, uma URL é atribuída a ele. Dessa maneira, é possível visualizar através do
+      navegador as informações do pull request criado. Essa URL possui o seguinte formato:
+      
+        https://github.com/[dono_do_projeto]/[projeto]/pull/[id_do_pull_request]
+      
+      Entrando nesse endereço, é possível visualizar também as modificações introduzidas pelo pull request, que é como é possível
+      avaliar se o pull request enviado está OK ou não.
+      O Git nos permite conferir o diff de diversas maneiras, a mais comum e prática é a dada no próprio pull request, podemos
+      fazer essa modificação manualmente, é prático porém mais trabalhoso. Outra forma de fazer é diretamente pelo GIT, sem precisar
+      copiar código. Uma vez que o pull request foi gerado, basta baixá-lo para o nosso projeto e realizarmos o git merge para
+      trazer as alterações para uma branch nossa. Com isso, bastaria primeiro fazer:
+      
+        git remote add [alias_do_repositorio_remoto] [url_do_repositorio_remoto]
+      
+      E em seguida fazermos o git fetch. Com isso, já teremos todas as alterações baixadas em nosso computador. A seguir, basta
+      realizar o git merge [alias_do_repositorio]/[branch]. Isso trará para a branch atual os commits existentes no repositório
+      remoto. Por fim, temos que colocar os commits em nosso repositório remoto. Para isso, basta executar o git push e, com isso,
+      introduzimos os commits do pull request de outro desenvolvedor ao nosso projeto.
+      
+      Gitconfig e aliases: Podemos definir atalhos personalizados ou mesmo automatizar os comandos do nosso git para melhorar nossa
+      performance de atuação realizando mais ações com menos necessidade de código. Para isso basta configurar um arquivo chamado
+      .gitconfig que fica na pasta de usuário padrão. Podemos editar o arquivo diretamente ou através do terminal utilizando o
+      comando vim ~/.gitconfig. Para adicionar atalhos vamos adicionar a área [alias] no arquivo, desta maneira:
         
-        git reset HEAD nomedoarquivo: Volta o arquivo ao estado unstaged, o que equivale a um arquivo antes de ser adicionado (add)
-        para comiit
-        
-        git reset identificadorDoCommit: Volta o status do git para o commit do identificador selecionado. Podemos capturar um
-        identificador através do comando git log
-        
-        git revert identificadorDoCommit: Faz um novo commit que desfaz o commit correspondente ao identificador.
-        
-        git stash: guarda as modificações que não foram comitadas. Desta forma podemos utilizar outros comandos de modificação de
-        commits e depois abrir o stash para prosseguir com o que havíamos guardado.
-        
-        git stash list: lista o que tem guardado em seu stash
-        
-        git stash pop: retoma os últimos dados salvos no stash.
-        
-        git stash apply identificadorDoStash: retoma os dados guardados no stash puxando pelo identificador.
-        
-        git stash drop: apaga as alterações guardadas no stash.
-        
-        git bisect start: Começa um processo de triagem de commits para achar um commit específico. Após startar o bisect deve-se
-        inserir os comandos "git bisect bad identificadorDoCommit" e "git bisect good identificadorDoCommit" (lembrando que podemos
-        inserir "git bisect HEAD" caso queiramos usar o último commit como base) sendo que o "good" é a versão que queremos e "bad" é
-        a versão que não queremos. Após isso o bisect irá retornar versões anteriores do arquivo, nós devemos analisar estas versões
-        dentro do arquivo e dizer se esta é a versão boa ou a ruim digitando "git bisect good" ou "git bisect bad" de acordo com o
-        resultado. Ao final o bisect irá finalizar com o commit que queremos e irá retornar seu identificador.
-        
-        08 - Contribuição com opensource: Técnicas avançadas e produtividade com o GIT
-        
-        Fork: Em muitos projetos não será possível ter permissão para dar push diretamente no repositório, porém nada impede que
-        façamos uma versão nossa do projeto paralelamente ao original. Para isso utilizamos o recurso "Fork" do próprio github.
-        Esse recurso cria uma cópia do projeto no nosso repositório reomoto onde teremos controle total. Neste instante podemos criar
-        o clone em nossa máquina a partir deste repositório sem problemas, adicionando melhorias ao projeto conforme formos
-        desenvolvendo. Porém podemos sugerir ao dono original do projeto que adicione as nossas alterações caso ele se interesse, a
-        esse processo damos o nome de "Pull Request". O pull request pode ser feito a partir da própria interface gráfica do github,
-        mas falaremos melhor dele mais adiante.
-        Contudo o projeto original receberá outras melhorias do autor e de outros colaboradores, para ficar a par destas melhorias é
-        recomendado que façamos uma cópia do repositório original para continuar recebendo commites e pushes, essa cópia relaciona o
-        repositório original ao fork e deve ser feita com o seguinte comando:
-        
-            git remote add original [caminho_do_repositorio_remoto]
-        
-        Sempre que quisermos carregar as alterações do repositório original utilizamos o comando git fetch original e logo em seguida
-        o comando git merge original/master para dar merge nas alterações.
-        
-        Pull request: O pull request é feito através da interface gráfica do próprio github (ou outros programas de gerenciamento de
-        GIT). Quando fazemos os pull request deixamos uma mensagem dizendo o que foi modificado e aguardamos a requisição ser aceita
-        ou não. Sempre que um pull request é criado, uma URL é atribuída a ele. Dessa maneira, é possível visualizar através do
-        navegador as informações do pull request criado. Essa URL possui o seguinte formato:
-        
-            https://github.com/[dono_do_projeto]/[projeto]/pull/[id_do_pull_request]
-        
-        Entrando nesse endereço, é possível visualizar também as modificações introduzidas pelo pull request, que é como é possível
-        avaliar se o pull request enviado está OK ou não.
-        O Git nos permite conferir o diff de diversas maneiras, a mais comum e prática é a dada no próprio pull request, podemos
-        fazer essa modificação manualmente, é prático porém mais trabalhoso. Outra forma de fazer é diretamente pelo GIT, sem precisar
-        copiar código. Uma vez que o pull request foi gerado, basta baixá-lo para o nosso projeto e realizarmos o git merge para
-        trazer as alterações para uma branch nossa. Com isso, bastaria primeiro fazer:
-        
-            git remote add [alias_do_repositorio_remoto] [url_do_repositorio_remoto]
-        
-        E em seguida fazermos o git fetch. Com isso, já teremos todas as alterações baixadas em nosso computador. A seguir, basta
-        realizar o git merge [alias_do_repositorio]/[branch]. Isso trará para a branch atual os commits existentes no repositório
-        remoto. Por fim, temos que colocar os commits em nosso repositório remoto. Para isso, basta executar o git push e, com isso,
-        introduzimos os commits do pull request de outro desenvolvedor ao nosso projeto.</p>
+        [alias]
+          st = status
+          co = checkout
+      
+      Desta forma estamos definindo atalhos para status e checkout, o que pode ser muito proveitoso em termos de produtividade.
+      Porém ainda existe a possibilidade de indicarmos uma sequência de comandos, como no exemplo abaixo
+      
+          envia =  envia = git checkout master && git pull && git checkout desenvolvimento && git rebase master && git checkout master && git merge desenvolvimento && git push
+      
+      Assim, quando digitarmos o comando "envia" no bash teremos todas estas tarefas realizadas em sequência, isso é extremamente
+      útil em projetos onde temos que commitar código constantemente.
+      
+      !: Qualquer comando do terminal é permitido em uma configuração de alias, mas para comandos que não são específicos do GIT
+      deve-se usar antes o !.
+      
+      Visualizações de log: Podemos ter diferentes visualizações do Log de acordo com comandos que direcionarmos ao bash:
+      
+      git log --stat: Dá um resumo dos commits com a quantidade de linhas adicionadas e removidas
+      
+      git log --pretty=oneline: Visualiza cada commit em uma linha no log. O comando "--pretty" aceita outros parâmetros como short,
+      medium, full, fuller, email, raw, etc.
+      
+      09 - Fazendo merges avançados com Cherry Pick
+      
+      Ao fazermos um merge de uma branch para outra passamos todos os commits subsequentes, porém existe um comando que passa apenas
+      um commit para uma branch ao invés de todos, ele é o cherry pick. Utilizamos o cherry pick da seguinte forma:
+      
+        git cherry-pick [hash_do_commit]
+      
+      Apesar de ser um recurso interessante o cerry pick não deve ser usado invariavelmente, as chances de problemas aparecerem ou
+      até mesmo erro de códigos são muito grandes. Existe apenas UMA situação em que o cherry pick é realmente útil: Em pull
+      requests recusadas onde se quer aproveitar um ou outro commit. Fora esse tipo situação é contra recomendado o uso do cherry
+      pick. Podemos inclusive adicionar o conteúdo do commit usando o cherry pick sem precisar adiconoar o commit ao log, para isso
+      usamos o seguinte comando:
+      
+        git cherry-pick -n [hash_do_commit]
+      
+      10 - Usando Git através de interfaces visuais
+      
+      Muitos desenvolvedores não se sentem confortáveis trabalhando na linha de comando de seu sistema operacional. Esse fato pode
+      ter muitos motivos: desde uma cultura de se trabalhar com ferramentas visuais, em vez da execução de comandos, até uma maior
+      familiaridade com ambiente gráfico.
+      Atualmente, boa parte dos desenvolvedores que utilizam o Git fazem uso dele através da linha de comando. No entanto, há cada
+      vez mais ferramentas que possibilitam o uso do Git através de interfaces gráficas. Existem diversas opções disponíveis de
+      ferramentas visuais para o Git, desde opções que são específicas para determinadas plataformas até soluções que são
+      multiplataforma.
+      Entre as opções que são específicas de plataforma, existem o Gitx, para o Mac, que pode ser encontrado em
+      http://gitx.frim.nl/, e o TortoiseGit, para Windows, disponível em http://code.google.com/p/tortoisegit/, que é da série
+      Tortoise, famosa pelas várias interfaces gráficas para sistemas de controle de versão, como o CVS e SVN.
+      Durante esse capítulo, vamos aprender a usar a ferramente Git-cola, que é uma ferramenta multiplataforma que nos permite
+      visualizar o repositório e realizar as tarefas que o Git nos fornece na linha de comando.
+      
+      Assim como o git-cola existem muitas outras ferramentas que disponiblilizam uma interface gráfica para o GIT, selecione a que 
+      for de sua preferência e boa sorte.</p>
 </body>
->>>>>>> master
 </html>
